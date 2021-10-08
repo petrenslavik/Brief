@@ -1,5 +1,5 @@
 <template>
-  <v-radio-group>
+  <v-radio-group :mandatory={isMandatory}>
       <template v-slot:label>
         {{ question }}
       </template>
@@ -12,6 +12,7 @@ export default {
   props: {
     question: String,
     options: Array,
+    isMandatory: Boolean,
   },
 };
 </script>
