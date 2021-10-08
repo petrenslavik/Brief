@@ -33,9 +33,12 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style>
 .text-field{
   padding-top:0px !important;
   padding-bottom: 5px;
+}
+.v-input__slot{
+  min-height: 42px !important;
 }
 </style>

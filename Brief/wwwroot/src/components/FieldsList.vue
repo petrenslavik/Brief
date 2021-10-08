@@ -72,6 +72,9 @@ export default {
 }
 
 .width-container{
-  max-width: 1185px !important;
+  max-width: 800px !important;
+}
+.v-card__title{
+  word-break: normal !important;
 }
 </style>

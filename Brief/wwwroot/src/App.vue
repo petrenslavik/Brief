@@ -25,7 +25,12 @@
         />
       </div>
 
-      <v-spacer>test</v-spacer>
+      <v-spacer></v-spacer>
+      <div>
+        <v-icon dense>
+          mdi-circle-outline
+        </v-icon>
+      </div>
       <v-spacer></v-spacer>
 
       <v-btn
@@ -77,9 +82,9 @@ export default {
 }
 
 body {
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background: linear-gradient(-45deg, #d8a273, #c99db6);
   background-size: 400% 400%;
-  animation: gradient 300s ease infinite;
+  animation: gradient 40s ease infinite;
 }
 
 @keyframes gradient {
