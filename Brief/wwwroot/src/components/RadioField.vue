@@ -1,5 +1,5 @@
 <template>
-  <v-radio-group :mandatory={isMandatory}>
+  <v-radio-group :mandatory="isMandatory">
       <template v-slot:label>
         {{ question }}
       </template>

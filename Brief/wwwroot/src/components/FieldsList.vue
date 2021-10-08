@@ -62,6 +62,7 @@ export default {
     },
     submit(event) {
       event.preventDefault();
+      this.$refs.form.validate();
     },
   },
 };
