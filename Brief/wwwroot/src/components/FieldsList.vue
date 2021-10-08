@@ -72,6 +72,6 @@ export default {
 }
 
 .width-container{
-  max-width: 1185px;
+  max-width: 1185px !important;
 }
 </style>
