@@ -34,16 +34,21 @@ import { mapGetters } from 'vuex';
 import TextField from './TextField.vue';
 import SwitchField from './SwitchField.vue';
 import DateField from './DateField.vue';
+import RadioField from './RadioField.vue';
 
 const types = {
   text: TextField,
   switch: SwitchField,
   date: DateField,
+  radio: RadioField,
 };
 
 export default {
   components: {
     TextField,
+    SwitchField,
+    DateField,
+    RadioField,
   },
   computed: {
     ...mapGetters(['sections']),

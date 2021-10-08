@@ -8,7 +8,7 @@ namespace Brief.ViewModels
 {
     public class BriefViewModel
     {
-        public IEnumerable<Section> Sections => new List<Section>()
+        public IEnumerable<Section> Sections => new Section[]
         {
             new Section()
             {
@@ -18,22 +18,32 @@ namespace Brief.ViewModels
                     new TextField()
                     {
                         Name = "Name",
-                        Question = "Ваше имя"
+                        Question = "Ваше имя",
+                        IsMandatory = true
                     },
                     new TextField()
                     {
                         Name = "Email",
-                        Question = "Ваша электронная почта"
+                        Question = "Ваша электронная почта",
+                        IsMandatory = true
                     },
                     new TextField()
                     {
                         Name = "PhoneNumber",
-                        Question = "Ваш номер телефона"
+                        Question = "Ваш номер телефона",
+                        IsMandatory = true
                     },
                     new TextField()
                     {
                         Name = "OrganizationName",
-                        Question = "Название Вашей организации"
+                        Question = "Название Вашей организации",
+                        IsMandatory = true
+                    },
+                    new TextField()
+                    {
+                        Name = "OrganizationDescription",
+                        Question = "Чем занимается Ваша организация?",
+                        IsMandatory = true
                     }
                 },
             },
@@ -45,23 +55,27 @@ namespace Brief.ViewModels
                     new TextField()
                     {
                         Name = "SoftwareType",
-                        Question = "Тип программного обеспечения"
+                        Question = "Тип программного обеспечения",
+                        IsMandatory = true
                     },
                     new TextField()
                     {
                         Name = "Problem",
                         Question =
-                            "Какую проблему (Вашей организации или Ваших клиентов) призвано решить данное программное обеспечение?"
+                            "Какую проблему (Вашей организации или Ваших клиентов) призвано решить данное программное обеспечение?",
+                        IsMandatory = true
                     },
                     new TextField()
                     {
                         Name = "Analog",
-                        Question = "Приведите несколько примеров аналогичного программного обеспечения"
+                        Question = "Приведите несколько примеров аналогичного программного обеспечения",
+                        IsMandatory = true
                     },
-                    new TextField()
+                    new RadioField()
                     {
                         Name = "UseCaseGeography",
-                        Question = "География использования программного обеспечения"
+                        Question = "География использования программного обеспечения",
+                        Options = new string[]{"Местная","Региональная","Национальная","Международная"}
                     }
                 }
                 },
@@ -70,21 +84,26 @@ namespace Brief.ViewModels
                 Name = "Разработка ПО",
                 Fields = new BaseField[]
                 {
-                    new SwitchField()
+                    new RadioField()
                     {
                         Name = "IsDesignRequired",
-                        Question = "Имеете ли вы готовый дизайн для данного программного обеспечения?"
+                        Question = "Имеете ли вы готовый дизайн для данного программного обеспечения?",
+                        Options = new string[]{"Да", "Нет"},
+                        IsMandatory = true
                     },
-                    new SwitchField()
+                    new RadioField()
                     {
                         Name = "IsStyleExist",
-                        Question = "Имеет ли Ваша организация фирменный стиль, логотип, символику?"
+                        Question = "Имеет ли Ваша организация фирменный стиль, логотип, символику?",
+                        Options = new string[]{"Да", "Нет"},
+                        IsMandatory = true
                     },
-                    new SwitchField()
+                    new RadioField()
                     {
                         Name = "ContinuousMaintenance",
-                        Question =
-                            "Требуется ли Вам дальнейшая поддержка данного программного обеспечения силами нашей компании?"
+                        Question = "Требуется ли Вам дальнейшая поддержка данного программного обеспечения силами нашей компании?",
+                        Options = new string[]{"Да", "Нет"},
+                        IsMandatory = true
                     }
                 }
             },
@@ -96,7 +115,8 @@ namespace Brief.ViewModels
                     new DateField()
                     {
                         Name = "DesirableDeadline",
-                        Question = "Укажите желаемые сроки готовности данного программного обеспечения"
+                        Question = "Укажите желаемые сроки готовности данного программного обеспечения",
+                        IsMandatory = true
                     }
                 }
             }

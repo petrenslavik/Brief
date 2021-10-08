@@ -19,7 +19,7 @@ namespace Brief
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddRazorPages();
         }
 

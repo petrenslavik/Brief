@@ -8,5 +8,6 @@ namespace Brief.Models
         public abstract string Type { get; }
         public string Question { get; set; }
         public string Name { get; set; }
+        public bool IsMandatory { get; set; }
     }
 }
