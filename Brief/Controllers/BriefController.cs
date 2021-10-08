@@ -1,24 +1,21 @@
-﻿using System.Collections.Generic;
-using Brief.Models;
+﻿using Brief.ViewModels;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Brief.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [EnableCors]
     public class BriefController: ControllerBase
     {
-        private readonly FormReflectionGenerator formReflectionGenerator;
-
-        public BriefController(FormReflectionGenerator formReflectionGenerator)
-        {
-            this.formReflectionGenerator = formReflectionGenerator;
-        }
-
         [HttpGet]
-        public List<BaseField> FormFields()
+        public BriefViewModel FormFields() => new BriefViewModel();
+
+        [HttpPost]
+        public void SaveForm(BriefViewModel model)
         {
-            return formReflectionGenerator.GetForm();
+
         }
     }
 }
