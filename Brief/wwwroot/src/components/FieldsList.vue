@@ -1,11 +1,10 @@
 <template>
   <v-form ref="form" @submit="submit">
-    <v-container>
+    <v-container class="width-container">
       <v-row no-gutters>
         <v-col class="brief-container">
           <v-card
             elevation="4"
-            shaped
             class="mx-auto field"
             v-for="section in sections"
             :key="section.name"
@@ -70,5 +69,9 @@ export default {
 <style>
 .brief-container > * {
   margin: 25px 0;
+}
+
+.width-container{
+  max-width: 1185px;
 }
 </style>

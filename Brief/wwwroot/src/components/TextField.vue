@@ -1,7 +1,7 @@
 <template>
   <div>
     {{question}}
-    <v-text-field class="text-field" :rules="generatedRules"></v-text-field>
+    <v-text-field class="text-field" :rules="generatedRules" outlined></v-text-field>
   </div>
 </template>
 <script>
