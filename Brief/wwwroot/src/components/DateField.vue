@@ -9,8 +9,8 @@
     min-width="290px"
   >
     <template v-slot:activator="{ on }">
+      {{ question }}
       <v-text-field
-        :label="question"
         prepend-icon="event"
         readonly
         :value="fromDateDisp"
@@ -32,6 +32,7 @@ export default {
   props: {
     question: String,
     isMandatory: Boolean,
+    isValid: Boolean,
   },
   data: () => {
     const date = new Date();
@@ -56,9 +57,22 @@ export default {
     generatedRules() {
       const rules = [];
       if (this.isMandatory) {
-        rules.push(this.rules.required);
+        rules.push(this.hofValidation(this.rules.required));
       }
       return rules;
+    },
+  },
+  methods: {
+    hofValidation(validateFunc) {
+      return (value) => {
+        const result = validateFunc(value);
+        if (result === true) {
+          this.$emit('update:isValid', true);
+        } else {
+          this.$emit('update:isValid', false);
+        }
+        return result;
+      };
     },
   },
 };

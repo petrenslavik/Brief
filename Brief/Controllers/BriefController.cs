@@ -13,7 +13,7 @@ namespace Brief.Controllers
         public BriefViewModel FormFields() => new BriefViewModel();
 
         [HttpPost]
-        public void SaveForm(BriefViewModel model)
+        public void SaveForm([FromForm] BriefViewModel model)
         {
 
         }

@@ -27,8 +27,8 @@
 
       <v-spacer></v-spacer>
       <div>
-        <v-icon dense>
-          mdi-circle-outline
+        <v-icon dense color="purple" v-for="section in completedSections" :key="section.name">
+          mdi-circle
         </v-icon>
       </div>
       <v-spacer></v-spacer>
@@ -64,7 +64,11 @@ export default {
   computed: {
     ...mapGetters([
       'isLoading',
+      'sections',
     ]),
+    completedSections() {
+      return this.sections.filter((section) => section.fields.every((field) => field.isValid));
+    },
   },
   methods: {
     ...mapActions([
@@ -82,6 +86,12 @@ export default {
 }
 
 body {
+  background: linear-gradient(-45deg, #d8a273, #c99db6);
+  background-size: 400% 400%;
+  animation: gradient 40s ease infinite;
+}
+
+header{
   background: linear-gradient(-45deg, #d8a273, #c99db6);
   background-size: 400% 400%;
   animation: gradient 40s ease infinite;

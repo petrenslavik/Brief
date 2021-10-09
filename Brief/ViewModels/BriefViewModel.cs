@@ -19,27 +19,35 @@ namespace Brief.ViewModels
                     {
                         Name = "Name",
                         Question = "Ваше имя",
-                        IsMandatory = true
+                        IsMandatory = true,
+                        MinLength = 3,
+                        MaxLength = 120
                     },
                     new TextField()
                     {
                         Name = "Email",
                         Question = "Ваша электронная почта",
-                        IsMandatory = true
+                        IsMandatory = true,
+                        MinLength = 3,
+                        MaxLength = 120
                     },
                     new TextField()
                     {
                         Name = "PhoneNumber",
                         Question = "Ваш номер телефона",
-                        IsMandatory = true
+                        IsMandatory = true,
+                        MinLength = 3,
+                        MaxLength = 120
                     },
                     new TextField()
                     {
                         Name = "OrganizationName",
                         Question = "Название Вашей организации",
-                        IsMandatory = true
+                        IsMandatory = true,
+                        MinLength = 3,
+                        MaxLength = 120
                     },
-                    new TextField()
+                    new TextAreaField()
                     {
                         Name = "OrganizationDescription",
                         Question = "Чем занимается Ваша организация?",
@@ -56,16 +64,18 @@ namespace Brief.ViewModels
                     {
                         Name = "SoftwareType",
                         Question = "Тип программного обеспечения",
-                        IsMandatory = true
+                        IsMandatory = true,
+                        MinLength = 3,
+                        MaxLength = 120
                     },
-                    new TextField()
+                    new TextAreaField()
                     {
                         Name = "Problem",
                         Question =
                             "Какую проблему (Вашей организации или Ваших клиентов) призвано решить данное программное обеспечение?",
                         IsMandatory = true
                     },
-                    new TextField()
+                    new TextAreaField()
                     {
                         Name = "Analog",
                         Question = "Приведите несколько примеров аналогичного программного обеспечения",
@@ -121,10 +131,6 @@ namespace Brief.ViewModels
                 }
             }
         };
-
-
-        //[Field("Укажите приблизительный бюджет для разработки данного программного обеспечения (от $ - до $)")]
-        //public long ApproximateBudget { get; set; }
     }
 
     public class Section

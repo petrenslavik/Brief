@@ -1,11 +1,7 @@
-<template>
-  <div class="text-field">
-    {{ question }}
-    <v-text-field
-      class="text-field-input"
-      :rules="generatedRules"
-      outlined
-    ></v-text-field>
+<template class="text-area-field">
+  <div>
+    {{question}}
+    <v-textarea class="text-area-field-input" auto-grow :rules="generatedRules" outlined></v-textarea>
   </div>
 </template>
 <script>
@@ -28,9 +24,7 @@ export default {
       const rules = [];
       Object.entries(backendPropsToRules).forEach(([propName, ruleName]) => {
         if (this[propName] !== undefined) {
-          rules.push(
-            this.hofValidation(this.rulesBuilders[ruleName](this[propName]), propName),
-          );
+          rules.push(this.hofValidation(this.rulesBuilders[ruleName](this[propName]), propName));
         }
       });
       return rules;
@@ -41,11 +35,6 @@ export default {
       rulesBuilders: {
         required: (isMandatory) => (value) => !isMandatory || !!value || 'Required.',
         maxLength: (length) => (value) => value === undefined || value.length <= length || `Max ${length} characters`,
-        minLength: (length) => (value) => value === undefined || value.length >= length || `Min ${length} characters`,
-        email: (value) => {
-          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-          return pattern.test(value) || 'Invalid e-mail.';
-        },
       },
       rulesIsValid: {
         isMandatory: true,
@@ -67,9 +56,9 @@ export default {
       return (value) => {
         const result = validateFunc(value);
         if (result === true) {
-          this.rulesIsValid[propName] = true;
+          this.$set(this.rulesIsValid, propName, true);
         } else {
-          this.rulesIsValid[propName] = false;
+          this.$set(this.rulesIsValid, propName, false);
         }
         return result;
       };
@@ -78,11 +67,11 @@ export default {
 };
 </script>
 <style>
-.text-field-input {
-  padding-top: 0px !important;
+.text-area-field-input{
+  padding-top:0px !important;
   padding-bottom: 5px;
 }
-.text-field .v-input__slot {
+.text-area-field .v-input__slot{
   min-height: 42px !important;
 }
 </style>
