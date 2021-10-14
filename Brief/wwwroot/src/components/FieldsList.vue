@@ -36,7 +36,7 @@
       </v-row>
       <v-row no-gutters>
         <v-spacer />
-        <v-btn color="success" class="mr-4 form-submit-btn" type="submit"> Submit </v-btn>
+        <v-btn color="#3498db" class="mr-4 form-submit-btn" type="submit"> Submit </v-btn>
         <v-spacer />
       </v-row>
     </v-container>
@@ -90,6 +90,7 @@ export default {
 
 .width-container {
   max-width: 800px !important;
+  margin-top:38px;
 }
 .v-card__title {
   word-break: normal !important;
@@ -98,5 +99,11 @@ export default {
 .form-submit-btn{
   padding: 0 30px !important;
   min-height: 42px;
+  color:white !important;
+}
+
+.step-progress__bar{
+  height: initial;
+  margin-bottom: initial;
 }
 </style>

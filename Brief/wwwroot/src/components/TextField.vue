@@ -22,6 +22,7 @@ export default {
     isValid: Boolean,
     minLength: Number,
     maxLength: Number,
+    name: String,
   },
   computed: {
     generatedRules() {
@@ -33,6 +34,12 @@ export default {
           );
         }
       });
+      if (this.name === 'Email') {
+        rules.push(this.hofValidation(this.rulesBuilders.email, 'email'));
+      }
+      if (this.name === 'PhoneNumber') {
+        rules.push(this.hofValidation(this.rulesBuilders.phone, 'phone'));
+      }
       return rules;
     },
   },
@@ -46,11 +53,17 @@ export default {
           const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
           return pattern.test(value) || 'Invalid e-mail.';
         },
+        phone: (value) => {
+          const pattern = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
+          return pattern.test(value) || 'Invalid phone.';
+        },
       },
       rulesIsValid: {
         isMandatory: true,
         minLength: true,
         maxLength: true,
+        email: true,
+        phone: true,
       },
     };
   },

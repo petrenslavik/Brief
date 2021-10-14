@@ -127,6 +127,13 @@ namespace Brief.ViewModels
                         Name = "DesirableDeadline",
                         Question = "Укажите желаемые сроки готовности данного программного обеспечения",
                         IsMandatory = true
+                    },
+                    new RadioField()
+                    {
+                        Name = "ApproximateBudget",
+                        Question = "Укажите приблизительный бюджет для разработки данного программного обеспечения (от $ - до $)",
+                        IsMandatory = true,
+                         Options = new string[]{"До 50000", "От 50000 до 100000" },
                     }
                 }
             }

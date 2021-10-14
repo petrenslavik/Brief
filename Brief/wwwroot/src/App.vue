@@ -6,41 +6,18 @@
       dark
     >
       <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+        Бриф
       </div>
 
-      <v-spacer></v-spacer>
-      <div>
-        <v-icon dense color="purple" v-for="section in completedSections" :key="section.name">
-          mdi-circle
-        </v-icon>
+      <div style="flex:1; max-width:400px; margin:auto;">
+        <step-progress :steps="completedSections" :current-step="currentSection" icon-class="fa fa-check"
+        :line-thickness="3"
+        :active-thickness="3"
+        :passive-thickness="3"
+        active-color="#3498db"
+        passive-color="#aed6f1"></step-progress>
       </div>
-      <v-spacer></v-spacer>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
     </v-app-bar>
 
     <v-main class="main">
@@ -51,12 +28,15 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import StepProgress from 'vue-step-progress';
+import 'vue-step-progress/dist/main.css';
 import FieldsList from './components/FieldsList.vue';
 
 export default {
   name: 'App',
   components: {
     FieldsList,
+    StepProgress,
   },
   data: () => ({
     //
@@ -67,7 +47,10 @@ export default {
       'sections',
     ]),
     completedSections() {
-      return this.sections.filter((section) => section.fields.every((field) => field.isValid));
+      return this.sections.map(() => '');
+    },
+    currentSection() {
+      return this.sections.filter((section) => section.fields.every((field) => field.isValid)).length;
     },
   },
   methods: {
@@ -107,5 +90,14 @@ header{
   100% {
     background-position: 0% 50%;
   }
+}
+
+.step-progress__step::after{
+  width: 20px;
+  height: 20px;
+}
+
+.step-progress__step span{
+  display: none;
 }
 </style>
