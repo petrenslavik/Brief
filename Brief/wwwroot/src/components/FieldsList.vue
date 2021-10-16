@@ -29,6 +29,7 @@
                 v-bind="field"
                 :key="field.name"
                 v-bind:isValid.sync="field.isValid"
+                @update="update"
               />
             </v-card-text>
           </v-card>
@@ -66,6 +67,11 @@ export default {
     DateField,
     RadioField,
   },
+  data() {
+    return {
+      inputs: {},
+    };
+  },
   computed: {
     ...mapGetters(['sections']),
   },
@@ -76,9 +82,18 @@ export default {
     submit(event) {
       event.preventDefault();
       const isValid = this.$refs.form.validate();
+      const formData = new FormData();
       if (isValid) {
-        request.post('/brief', new FormData(event.target));
+        this.sections.forEach((section) => {
+          section.fields.forEach((field) => {
+            formData.append(field.name, this.inputs[field.name]);
+          });
+        });
+        request.post('/brief', formData);
       }
+    },
+    update(name, value) {
+      this.inputs[name] = value;
     },
   },
 };

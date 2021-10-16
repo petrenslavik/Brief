@@ -33,12 +33,13 @@ export default {
     question: String,
     isMandatory: Boolean,
     isValid: Boolean,
+    name: String,
   },
   data: () => {
     const date = new Date();
     return {
       minDate: date.toISOString(),
-      fromDateVal: null,
+      fromDateVal: '',
       fromDateMenu: false,
       rules: {
         required: (value) => !!value || 'Required.',
@@ -60,6 +61,11 @@ export default {
         rules.push(this.hofValidation(this.rules.required));
       }
       return rules;
+    },
+  },
+  watch: {
+    fromDateVal(val) {
+      this.$emit('update', this.name, val);
     },
   },
   methods: {

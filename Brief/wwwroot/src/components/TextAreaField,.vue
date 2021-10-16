@@ -1,7 +1,7 @@
 <template class="text-area-field">
   <div>
     {{question}}
-    <v-textarea class="text-area-field-input" auto-grow :rules="generatedRules" outlined></v-textarea>
+    <v-textarea class="text-area-field-input" auto-grow :rules="generatedRules" outlined v-model="fieldValue"></v-textarea>
   </div>
 </template>
 <script>
@@ -18,6 +18,7 @@ export default {
     isValid: Boolean,
     minLength: Number,
     maxLength: Number,
+    name: String,
   },
   computed: {
     generatedRules() {
@@ -41,6 +42,7 @@ export default {
         minLength: true,
         maxLength: true,
       },
+      fieldValue: '',
     };
   },
   watch: {
@@ -49,6 +51,9 @@ export default {
         this.$emit('update:isValid', Object.values(newObj).every((val) => val));
       },
       deep: true,
+    },
+    fieldValue(val) {
+      this.$emit('update', this.name, val);
     },
   },
   methods: {

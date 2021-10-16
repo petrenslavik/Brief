@@ -1,5 +1,5 @@
 <template>
-  <v-radio-group :mandatory="isMandatory" class="radio-field" :name="name">
+  <v-radio-group :mandatory="isMandatory" class="radio-field" :name="name" v-model="fieldValue">
       <template v-slot:label>
         {{ question }}
       </template>
@@ -16,8 +16,18 @@ export default {
     isMandatory: Boolean,
     isValid: Boolean,
   },
+  data() {
+    return {
+      fieldValue: '',
+    };
+  },
   mounted() {
     this.$emit('update:isValid', true);
+  },
+  watch: {
+    fieldValue(val) {
+      this.$emit('update', this.name, val);
+    },
   },
 };
 </script>

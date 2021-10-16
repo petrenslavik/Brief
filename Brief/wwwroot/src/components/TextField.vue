@@ -5,6 +5,8 @@
       class="text-field-input"
       :rules="generatedRules"
       outlined
+      :id="name"
+      v-model="fieldValue"
     ></v-text-field>
   </div>
 </template>
@@ -65,6 +67,7 @@ export default {
         email: true,
         phone: true,
       },
+      fieldValue: '',
     };
   },
   watch: {
@@ -73,6 +76,9 @@ export default {
         this.$emit('update:isValid', Object.values(newObj).every((val) => val));
       },
       deep: true,
+    },
+    fieldValue(val) {
+      this.$emit('update', this.name, val);
     },
   },
   methods: {
