@@ -2,19 +2,18 @@
   <v-app>
     <v-app-bar
       app
-      color="primary"
       dark
     >
-      <div class="d-flex align-center">
-        Бриф
+      <div class="d-flex align-center" style="font-style: italic; font-size: 44px; margin-top: 25px;">
+        Brief
       </div>
 
       <div style="flex:1; max-width:400px; margin:auto;">
-        <step-progress :steps="completedSections" :current-step="currentSection" icon-class="fa fa-check"
+        <step-progress :steps="steps" :current-step="currentSection" icon-class="fa fa-check"
         :line-thickness="3"
         :active-thickness="3"
         :passive-thickness="3"
-        active-color="#3498db"
+        active-color="#16475A"
         passive-color="#aed6f1"></step-progress>
       </div>
 
@@ -39,7 +38,7 @@ export default {
     StepProgress,
   },
   data: () => ({
-    //
+    steps: ['25%', '50%', '75%', '100%'],
   }),
   computed: {
     ...mapGetters([
@@ -69,15 +68,12 @@ export default {
 }
 
 body {
-  background: linear-gradient(-45deg, #d8a273, #c99db6);
-  background-size: 400% 400%;
-  animation: gradient 40s ease infinite;
+  background: linear-gradient(#dca467, #c99db6);
 }
 
 header{
-  background: linear-gradient(-45deg, #d8a273, #c99db6);
-  background-size: 400% 400%;
-  animation: gradient 40s ease infinite;
+  height: 90px !important;
+  background-color: #dca467 !important;
 }
 
 @keyframes gradient {
@@ -90,6 +86,10 @@ header{
   100% {
     background-position: 0% 50%;
   }
+}
+
+.step-progress__step-label {
+  color: #aed6f1;
 }
 
 .step-progress__step::after{

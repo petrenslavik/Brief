@@ -29,7 +29,7 @@ namespace Brief.Controllers
             {
                 SerializedForm = JsonConvert.SerializeObject(dict)
             });
-            dbContext.SaveChanges();
+            //dbContext.SaveChanges();
         }
     }
 }

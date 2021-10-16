@@ -20,7 +20,7 @@ namespace Brief
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server = (localdb)\\mssqllocaldb; Database = brief; Trusted_Connection = True;MultipleActiveResultSets = true;");
+            optionsBuilder.UseSqlServer("Server = DESKTOP-IUMC6EK\\SQLEXPRESS; Database = brief; Trusted_Connection = True;MultipleActiveResultSets = true;");
         }
     }
 }

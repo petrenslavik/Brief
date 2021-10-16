@@ -2,7 +2,8 @@
   <v-form ref="form" @submit="submit">
     <v-container class="width-container">
       <v-row no-gutters>
-        <v-card elevation="4" class="mx-auto field">
+        <v-col class="brief-container">
+          <v-card elevation="4" class="mx-auto field">
           <v-card-title>Бриф на разработку ПО</v-card-title>
           <v-card-text>
             Данный опрос содержит вопросы для сбора базовой информации о Вас,
@@ -12,9 +13,6 @@
             данного брифа
           </v-card-text>
         </v-card>
-      </v-row>
-      <v-row no-gutters class="brief-container">
-        <v-col class="brief-container">
           <v-card
             elevation="4"
             class="mx-auto field"
@@ -37,7 +35,7 @@
       </v-row>
       <v-row no-gutters>
         <v-spacer />
-        <v-btn color="#3498db" class="mr-4 form-submit-btn" type="submit"> Submit </v-btn>
+        <v-btn color="#16475A" class="mr-4 mt-5 mb-5 form-submit-btn" type="submit"> Submit </v-btn>
         <v-spacer />
       </v-row>
     </v-container>
@@ -100,12 +98,12 @@ export default {
 </script>
 <style>
 .brief-container > * {
-  margin: 25px 0;
+  margin: 25px 0 0 0;
 }
 
 .width-container {
   max-width: 800px !important;
-  margin-top:38px;
+  margin-top: 16px;
 }
 .v-card__title {
   word-break: normal !important;
