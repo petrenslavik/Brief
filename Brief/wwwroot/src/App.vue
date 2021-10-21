@@ -20,7 +20,7 @@
     </v-app-bar>
 
     <v-main class="main">
-      <FieldsList/>
+      <router-view></router-view>
     </v-main>
   </v-app>
 </template>
@@ -29,12 +29,10 @@
 import { mapGetters, mapActions } from 'vuex';
 import StepProgress from 'vue-step-progress';
 import 'vue-step-progress/dist/main.css';
-import FieldsList from './components/FieldsList.vue';
 
 export default {
   name: 'App',
   components: {
-    FieldsList,
     StepProgress,
   },
   data: () => ({
