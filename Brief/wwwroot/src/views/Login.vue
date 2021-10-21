@@ -1,31 +1,39 @@
 <template>
-  <v-form ref="form" @submit="submit">
-    <div id="login">
-        <div class="container">
-            <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-6">
-                    <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="" method="post">
-                            <h3 class="text-center text-info">Login</h3>
-                            <div class="form-group">
-                                <label for="username" class="text-info">Username:</label><br>
-                                <input type="text" name="username" id="username" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="password" class="text-info">Password:</label><br>
-                                <input type="password" name="password" id="password" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="remember-me" class="text-info"><span>Remember me</span><span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-  </v-form>
+         <v-container fluid fill-height>
+            <v-layout align-center justify-center>
+               <v-flex xs12 sm8 md4>
+                 <v-form ref="loginForm" @submit="submit">
+                  <v-card class="elevation-12">
+                     <v-card-title class="primary">Login form</v-card-title>
+                     <v-card-text>
+                           <v-text-field
+                              :rules="generatedRules"
+                              prepend-icon="person"
+                              name="login"
+                              label="Login"
+                              type="text"
+                              @input="error = null"
+                           ></v-text-field>
+                           <v-text-field
+                              id="password"
+                              :rules="generatedRules"
+                              prepend-icon="lock"
+                              name="password"
+                              label="Password"
+                              type="password"
+                              @input="error = null"
+                           ></v-text-field>
+                           <p style="color: #ff1744">{{error}}</p>
+                     </v-card-text>
+                     <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="#16475A" class="mr-4 mt-5 mb-5 form-submit-btn" type="submit"> Submit </v-btn>
+                     </v-card-actions>
+                  </v-card>
+                </v-form>
+               </v-flex>
+            </v-layout>
+         </v-container>
 </template>
 <script>
 import request from '../services/request';
@@ -33,29 +41,28 @@ import request from '../services/request';
 export default {
   data() {
     return {
+      error: null,
     };
+  },
+  computed: {
+    generatedRules() {
+      const rules = [];
+      rules.push((value) => !!value || 'Required.');
+      return rules;
+    },
   },
   methods: {
     submit(event) {
       event.preventDefault();
-      request.post('/admin/login', new FormData(event.target));
+      const isValid = this.$refs.loginForm.validate();
+      if (isValid) {
+        request.post('/admin/login', new FormData(event.target)).then(() => {
+          this.$router.push('/');
+        }).catch((error) => {
+          this.error = error.response.data;
+        });
+      }
     },
   },
 };
 </script>
-
-<style scoped>
-  #login .container #login-row #login-column #login-box {
-  margin-top: 120px;
-  max-width: 600px;
-  height: 320px;
-  border: 1px solid #9C9C9C;
-  background-color: #EAEAEA;
-  }
-  #login .container #login-row #login-column #login-box #login-form {
-    padding: 20px;
-  }
-  #login .container #login-row #login-column #login-box #login-form #register-link {
-    margin-top: -85px;
-  }
-</style>

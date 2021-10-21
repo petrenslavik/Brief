@@ -7,15 +7,17 @@ using System.Threading.Tasks;
 
 namespace Brief.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
     [EnableCors]
-    public class AdminController : ControllerBase
+    public class AdminController : Controller
     {
         [HttpPost]
-        public void Login()
-        {
-            var dict = Request.Form.ToDictionary();
+        public ActionResult Login(string login, string password)
+        {          
+            if(login == "admin" && password == "admin")
+            {
+                return Ok();
+            }
+            return BadRequest("Invalid login or password");
             //dbContext.SaveChanges();
         }
     }
