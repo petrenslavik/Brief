@@ -1,5 +1,6 @@
 <template>
-  <v-form ref="form" @submit="submit">
+<div>
+  <v-form ref="form" @submit="submit" v-if="!isSubmitted">
     <v-container class="width-container">
       <v-row no-gutters>
         <v-col class="brief-container">
@@ -52,6 +53,21 @@
       </v-row>
     </v-container>
   </v-form>
+  <div v-else>
+    <v-container class="width-container">
+      <v-row no-gutters>
+        <v-col class="brief-container">
+          <v-card elevation="4" class="mx-auto field">
+          <v-card-title>Ваши ответы были записаны</v-card-title>
+          <v-card-text>
+            Мы вам перезвоним.
+          </v-card-text>
+        </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
+  </div>
 </template>
 <script>
 import { mapGetters } from 'vuex';
@@ -84,6 +100,7 @@ export default {
   data() {
     return {
       inputs: {},
+      isSubmitted: false,
     };
   },
   computed: {
@@ -107,6 +124,7 @@ export default {
           });
         });
         request.post('/brief', formData);
+        this.isSubmitted = true;
       }
     },
     update(name, value) {
@@ -128,13 +146,13 @@ export default {
   word-break: normal !important;
 }
 
-.form-submit-btn{
+.form-submit-btn {
   padding: 0 30px !important;
   min-height: 42px;
-  color:white !important;
+  color: white !important;
 }
 
-.step-progress__bar{
+.step-progress__bar {
   height: initial;
   margin-bottom: initial;
 }

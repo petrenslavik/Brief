@@ -36,7 +36,7 @@
          </v-container>
 </template>
 <script>
-import request from '../services/request';
+import { mapActions } from 'vuex';
 
 export default {
   data() {
@@ -52,11 +52,15 @@ export default {
     },
   },
   methods: {
+    ...mapActions([
+      'getFields',
+      'login',
+    ]),
     submit(event) {
       event.preventDefault();
       const isValid = this.$refs.loginForm.validate();
       if (isValid) {
-        request.post('/admin/login', new FormData(event.target)).then(() => {
+        this.login(new FormData(event.target)).then(() => {
           this.$router.push({ name: 'Reports' });
         }).catch((error) => {
           this.error = error.response.data;

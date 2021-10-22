@@ -89,6 +89,11 @@ header{
   }
 }
 
+.step-progress__bar{
+  height: auto;
+  margin-bottom: 0;
+}
+
 .step-progress__step-label {
   color: #aed6f1;
 }
