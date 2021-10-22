@@ -1,31 +1,43 @@
 <template>
-  <v-menu
-    v-model="fromDateMenu"
-    :close-on-content-click="false"
-    :nudge-right="40"
-    transition="scale-transition"
-    offset-y
-    max-width="290px"
-    min-width="290px"
-  >
-    <template v-slot:activator="{ on }">
+  <div>
+    <v-menu
+      v-if="!readonly"
+      v-model="fromDateMenu"
+      :close-on-content-click="false"
+      :nudge-right="40"
+      transition="scale-transition"
+      offset-y
+      max-width="290px"
+      min-width="290px"
+    >
+      <template v-slot:activator="{ on }">
+        {{ question }}
+        <v-text-field
+          prepend-icon="event"
+          readonly
+          :value="fromDateDisp"
+          v-on="on"
+          :rules="generatedRules"
+        ></v-text-field>
+      </template>
+      <v-date-picker
+        locale="en-in"
+        no-title
+        @input="fromDateMenu = false"
+        :min="minDate"
+        v-model="fromDateVal"
+      ></v-date-picker>
+    </v-menu>
+    <div v-else>
       {{ question }}
       <v-text-field
         prepend-icon="event"
         readonly
-        :value="fromDateDisp"
-        v-on="on"
+        :value="value"
         :rules="generatedRules"
       ></v-text-field>
-    </template>
-    <v-date-picker
-      locale="en-in"
-      no-title
-      @input="fromDateMenu = false"
-      :min="minDate"
-      v-model="fromDateVal"
-    ></v-date-picker>
-  </v-menu>
+    </div>
+  </div>
 </template>
 <script>
 export default {
@@ -34,6 +46,8 @@ export default {
     isMandatory: Boolean,
     isValid: Boolean,
     name: String,
+    readonly: Boolean,
+    value: String,
   },
   data: () => {
     const date = new Date();

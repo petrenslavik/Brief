@@ -2,11 +2,21 @@
   <div class="text-field">
     {{ question }}
     <v-text-field
+      v-if="!readonly"
       class="text-field-input"
       :rules="generatedRules"
       outlined
       :id="name"
       v-model="fieldValue"
+    ></v-text-field>
+    <v-text-field
+      v-else
+      class="text-field-input"
+      :rules="generatedRules"
+      outlined
+      :id="name"
+      v-model="value"
+      readonly
     ></v-text-field>
   </div>
 </template>
@@ -25,6 +35,8 @@ export default {
     minLength: Number,
     maxLength: Number,
     name: String,
+    readonly: Boolean,
+    value: String,
   },
   computed: {
     generatedRules() {
@@ -32,7 +44,10 @@ export default {
       Object.entries(backendPropsToRules).forEach(([propName, ruleName]) => {
         if (this[propName] !== undefined) {
           rules.push(
-            this.hofValidation(this.rulesBuilders[ruleName](this[propName]), propName),
+            this.hofValidation(
+              this.rulesBuilders[ruleName](this[propName]),
+              propName,
+            ),
           );
         }
       });
@@ -49,8 +64,12 @@ export default {
     return {
       rulesBuilders: {
         required: (isMandatory) => (value) => !isMandatory || !!value || 'Required.',
-        maxLength: (length) => (value) => value === undefined || value.length <= length || `Max ${length} characters`,
-        minLength: (length) => (value) => value === undefined || value.length >= length || `Min ${length} characters`,
+        maxLength: (length) => (value) => value === undefined
+          || value.length <= length
+          || `Max ${length} characters`,
+        minLength: (length) => (value) => value === undefined
+          || value.length >= length
+          || `Min ${length} characters`,
         email: (value) => {
           const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
           return pattern.test(value) || 'Invalid e-mail.';
@@ -73,7 +92,10 @@ export default {
   watch: {
     rulesIsValid: {
       handler(newObj) {
-        this.$emit('update:isValid', Object.values(newObj).every((val) => val));
+        this.$emit(
+          'update:isValid',
+          Object.values(newObj).every((val) => val),
+        );
       },
       deep: true,
     },

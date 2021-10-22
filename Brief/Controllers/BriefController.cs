@@ -1,9 +1,9 @@
-﻿using Brief.Models;
+﻿using System;
+using Brief.Models;
 using Brief.ViewModels;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Linq;
 
 namespace Brief.Controllers
 {
@@ -27,9 +27,10 @@ namespace Brief.Controllers
             var dict = Request.Form.ToDictionary();
             dbContext.Forms.Add(new Form()
             {
-                SerializedForm = JsonConvert.SerializeObject(dict)
+                SerializedForm = JsonConvert.SerializeObject(dict),
+                Date = DateTime.Now
             });
-            //dbContext.SaveChanges();
+            dbContext.SaveChanges();
         }
     }
 }

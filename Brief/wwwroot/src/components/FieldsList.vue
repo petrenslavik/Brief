@@ -20,7 +20,7 @@
             :key="section.name"
           >
             <v-card-title>{{ section.name }}</v-card-title>
-            <v-card-text>
+            <v-card-text v-if="!isReadonly">
               <component
                 v-for="field in section.fields"
                 v-bind:is="getComponent(field)"
@@ -30,10 +30,22 @@
                 @update="update"
               />
             </v-card-text>
+            <v-card-text v-else>
+              <component
+                v-for="field in section.fields"
+                v-bind:is="getComponent(field)"
+                v-bind="field"
+                :key="field.name"
+                v-bind:isValid.sync="field.isValid"
+                @update="update"
+                :readonly="isReadonly"
+                :value="submittedForm[field.name]"
+              />
+            </v-card-text>
           </v-card>
         </v-col>
       </v-row>
-      <v-row no-gutters>
+      <v-row no-gutters v-if="!isReadonly">
         <v-spacer />
         <v-btn color="#16475A" class="mr-4 mt-5 mb-5 form-submit-btn" type="submit"> Submit </v-btn>
         <v-spacer />
@@ -59,11 +71,15 @@ const types = {
 };
 
 export default {
+  name: 'FieldsList',
   components: {
     TextField,
     SwitchField,
     DateField,
     RadioField,
+  },
+  props: {
+    submittedForm: Object,
   },
   data() {
     return {
@@ -72,6 +88,9 @@ export default {
   },
   computed: {
     ...mapGetters(['sections']),
+    isReadonly() {
+      return !!this.submittedForm;
+    },
   },
   methods: {
     getComponent(field) {

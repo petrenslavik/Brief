@@ -133,7 +133,7 @@ namespace Brief.ViewModels
                         Name = "ApproximateBudget",
                         Question = "Укажите приблизительный бюджет для разработки данного программного обеспечения (от $ - до $)",
                         IsMandatory = true,
-                         Options = new string[]{"До 50000", "От 50000 до 100000" },
+                        Options = new string[]{"До 50000", "От 50000 до 100000" },
                     }
                 }
             }

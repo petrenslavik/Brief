@@ -1,7 +1,23 @@
 <template class="text-area-field">
   <div>
-    {{question}}
-    <v-textarea class="text-area-field-input" auto-grow :rules="generatedRules" outlined v-model="fieldValue"></v-textarea>
+    {{ question }}
+    <v-textarea
+      v-if="!readonly"
+      class="text-area-field-input"
+      auto-grow
+      :rules="generatedRules"
+      outlined
+      v-model="fieldValue"
+    ></v-textarea>
+    <v-textarea
+      v-else
+      class="text-area-field-input"
+      auto-grow
+      :rules="generatedRules"
+      outlined
+      v-model="value"
+      readonly
+    ></v-textarea>
   </div>
 </template>
 <script>
@@ -19,13 +35,20 @@ export default {
     minLength: Number,
     maxLength: Number,
     name: String,
+    readonly: Boolean,
+    value: String,
   },
   computed: {
     generatedRules() {
       const rules = [];
       Object.entries(backendPropsToRules).forEach(([propName, ruleName]) => {
         if (this[propName] !== undefined) {
-          rules.push(this.hofValidation(this.rulesBuilders[ruleName](this[propName]), propName));
+          rules.push(
+            this.hofValidation(
+              this.rulesBuilders[ruleName](this[propName]),
+              propName,
+            ),
+          );
         }
       });
       return rules;
@@ -35,7 +58,9 @@ export default {
     return {
       rulesBuilders: {
         required: (isMandatory) => (value) => !isMandatory || !!value || 'Required.',
-        maxLength: (length) => (value) => value === undefined || value.length <= length || `Max ${length} characters`,
+        maxLength: (length) => (value) => value === undefined
+          || value.length <= length
+          || `Max ${length} characters`,
       },
       rulesIsValid: {
         isMandatory: true,
@@ -48,7 +73,10 @@ export default {
   watch: {
     rulesIsValid: {
       handler(newObj) {
-        this.$emit('update:isValid', Object.values(newObj).every((val) => val));
+        this.$emit(
+          'update:isValid',
+          Object.values(newObj).every((val) => val),
+        );
       },
       deep: true,
     },
@@ -72,11 +100,11 @@ export default {
 };
 </script>
 <style>
-.text-area-field-input{
-  padding-top:0px !important;
+.text-area-field-input {
+  padding-top: 0px !important;
   padding-bottom: 5px;
 }
-.text-area-field .v-input__slot{
+.text-area-field .v-input__slot {
   min-height: 42px !important;
 }
 </style>

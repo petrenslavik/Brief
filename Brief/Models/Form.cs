@@ -9,5 +9,6 @@ namespace Brief.Models
     {
         public int Id { get; set; }
         public string SerializedForm { get; set; }
+        public DateTime Date { get; set; }
     }
 }

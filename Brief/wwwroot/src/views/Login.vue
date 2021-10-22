@@ -57,7 +57,7 @@ export default {
       const isValid = this.$refs.loginForm.validate();
       if (isValid) {
         request.post('/admin/login', new FormData(event.target)).then(() => {
-          this.$router.push('/');
+          this.$router.push({ name: 'Reports' });
         }).catch((error) => {
           this.error = error.response.data;
         });

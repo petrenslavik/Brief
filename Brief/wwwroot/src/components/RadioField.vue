@@ -1,11 +1,43 @@
 <template>
-  <v-radio-group :mandatory="isMandatory" class="radio-field" :name="name" v-model="fieldValue">
+  <div>
+    <v-radio-group
+      v-if="!readonly"
+      :mandatory="isMandatory"
+      class="radio-field"
+      :name="name"
+      v-model="fieldValue"
+    >
       <template v-slot:label>
         {{ question }}
       </template>
-      <v-radio v-for="option in options" :key="option" :label="option" :value="option">
+      <v-radio
+        v-for="option in options"
+        :key="option"
+        :label="option"
+        :value="option"
+      >
       </v-radio>
     </v-radio-group>
+    <v-radio-group
+      v-else
+      :mandatory="isMandatory"
+      class="radio-field"
+      :name="name"
+      v-model="value"
+      readonly
+    >
+      <template v-slot:label>
+        {{ question }}
+      </template>
+      <v-radio
+        v-for="option in options"
+        :key="option"
+        :label="option"
+        :value="option"
+      >
+      </v-radio>
+    </v-radio-group>
+  </div>
 </template>
 <script>
 export default {
@@ -15,6 +47,8 @@ export default {
     options: Array,
     isMandatory: Boolean,
     isValid: Boolean,
+    readonly: Boolean,
+    value: String,
   },
   data() {
     return {
@@ -32,7 +66,7 @@ export default {
 };
 </script>
 <style>
-.radio-field{
-  margin-top:0px !important;
+.radio-field {
+  margin-top: 0px !important;
 }
 </style>
