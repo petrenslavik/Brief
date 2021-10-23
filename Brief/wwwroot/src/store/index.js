@@ -46,6 +46,10 @@ export default new Vuex.Store({
       state.isAuthorized = true;
       localStorage.setItem('isAuthorized', JSON.stringify(true));
     },
+    LOGOUT(state) {
+      state.isAuthorized = false;
+      localStorage.setItem('isAuthorized', JSON.stringify(false));
+    },
   },
   actions: {
     async getFields({ commit }) {
@@ -73,6 +77,9 @@ export default new Vuex.Store({
       } catch (error) {
         console.log(error);
       }
+    },
+    async logout({ commit }) {
+      commit('LOGOUT');
     },
   },
   modules: {
