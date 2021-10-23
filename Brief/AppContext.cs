@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace Brief
 {
-    public class AppContext: DbContext
+    public class AppContext : DbContext
     {
+        public AppContext(DbContextOptions<AppContext> options): base(options)
+        {
+
+        }
         public DbSet<Form> Forms { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -16,11 +20,6 @@ namespace Brief
             modelBuilder.Entity<Form>()
                 .Property(b => b.SerializedForm)
                 .IsRequired();
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server = DESKTOP-IUMC6EK\\SQLEXPRESS; Database = brief; Trusted_Connection = True;MultipleActiveResultSets = true;");
         }
     }
 }

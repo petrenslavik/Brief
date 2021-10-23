@@ -11,11 +11,13 @@ export default new Vuex.Store({
     formConfig: [],
     isLoading: false,
     submittedForms: [],
+    isAuthorized: JSON.parse(localStorage.getItem('isAuthorized')),
   },
   getters: {
     sections: (state) => state.formConfig,
     isLoading: (state) => state.isLoading,
     submittedForms: (state) => state.submittedForms,
+    isAuthorized: (state) => state.isAuthorized,
   },
   mutations: {
     SET_FIELDS(state, { sections }) {
@@ -40,6 +42,10 @@ export default new Vuex.Store({
         state.submittedForms.splice(index, 1);
       }
     },
+    SET_USER(state) {
+      state.isAuthorized = true;
+      localStorage.setItem('isAuthorized', JSON.stringify(true));
+    },
   },
   actions: {
     async getFields({ commit }) {
@@ -58,6 +64,14 @@ export default new Vuex.Store({
         await request.delete('/admin/deleteForm', { params: { id } });
       } finally {
         commit('DELETE_FORM', id);
+      }
+    },
+    async login({ commit }, data) {
+      try {
+        await request.post('/admin/loginUser', data);
+        commit('SET_USER');
+      } catch (error) {
+        console.log(error);
       }
     },
   },
