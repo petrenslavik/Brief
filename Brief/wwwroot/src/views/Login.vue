@@ -4,13 +4,13 @@
                <v-flex xs12 sm8 md4>
                  <v-form ref="loginForm" @submit="submit">
                   <v-card class="elevation-12">
-                     <v-card-title class="primary">Login form</v-card-title>
-                     <v-card-text>
+                     <v-card-title class="primary">Логин</v-card-title>
+                     <v-card-text style="margin-top:15px; padding-bottom: 0;">
                            <v-text-field
                               :rules="generatedRules"
                               prepend-icon="person"
                               name="login"
-                              label="Login"
+                              label="Логин"
                               type="text"
                               @input="error = null"
                            ></v-text-field>
@@ -19,15 +19,16 @@
                               :rules="generatedRules"
                               prepend-icon="lock"
                               name="password"
-                              label="Password"
+                              label="Пароль"
                               type="password"
                               @input="error = null"
                            ></v-text-field>
-                           <p style="color: #ff1744">{{error}}</p>
+                           <p style="color: #ff1744" v-if="error">{{error}}</p>
                      </v-card-text>
                      <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="#16475A" class="mr-4 mt-5 mb-5 form-submit-btn" type="submit"> Submit </v-btn>
+                        <v-btn color="#16475A" class="mr-4 mt-5 mb-5 form-submit-btn" type="submit"> Вход </v-btn>
+                        <v-spacer></v-spacer>
                      </v-card-actions>
                   </v-card>
                 </v-form>
@@ -47,7 +48,7 @@ export default {
   computed: {
     generatedRules() {
       const rules = [];
-      rules.push((value) => !!value || 'Required.');
+      rules.push((value) => !!value || 'Обязательно.');
       return rules;
     },
   },

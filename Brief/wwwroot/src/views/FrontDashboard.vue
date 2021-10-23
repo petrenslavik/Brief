@@ -5,7 +5,7 @@
       dark
     >
       <div class="d-flex align-center" style="font-style: italic; font-size: 44px; margin-top: 25px; color: rgb(22, 71, 90); ">
-        Brief
+       <router-link to="/">  Brief</router-link>
       </div>
 
       <div style="flex:1; max-width:400px; margin:auto;">
@@ -50,7 +50,7 @@ export default {
       return this.sections.map(() => '');
     },
     currentSection() {
-      return this.sections.filter((section) => section.fields.every((field) => field.isValid)).length;
+      return this.sections.filter((section) => section.fields.every((field) => field.isValid) && section.name !== 'Дополнительная информация').length;
     },
   },
   methods: {
@@ -101,5 +101,9 @@ header {
 
 .step-progress__step span{
   display: none;
+}
+
+a{
+  text-decoration: none;
 }
 </style>

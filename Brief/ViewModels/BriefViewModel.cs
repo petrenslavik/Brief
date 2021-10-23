@@ -103,12 +103,6 @@ namespace Brief.ViewModels
                         Question = "Приведите несколько примеров аналогичного программного обеспечения",
                         IsMandatory = true
                     },
-                     new TextAreaField()
-                    {
-                        Name = "Structure",
-                        Question = "Напишите предварительную структуру сайта: основные разделы, подразделы. Кратко опишите их функциональное назначение и дайте характеристику содержания каждого из разделов.",
-                        IsMandatory = true
-                    },
                     new TextAreaField()
                     {
                         Name = "Customers",
@@ -142,6 +136,12 @@ namespace Brief.ViewModels
                         Options = new string[]{"Да", "Нет"},
                         IsMandatory = true
                     },
+                    new TextAreaField()
+                    {
+                        Name = "Structure",
+                        Question = "Напишите предварительную структуру сайта: основные разделы, подразделы. Кратко опишите их функциональное назначение и дайте характеристику содержания каждого из разделов.",
+                        IsMandatory = true
+                    },
                     new RadioField()
                     {
                         Name = "ContinuousMaintenance",
@@ -167,7 +167,7 @@ namespace Brief.ViewModels
                         Name = "ApproximateBudget",
                         Question = "Укажите приблизительный бюджет для разработки данного программного обеспечения (от $ - до $)",
                         IsMandatory = true,
-                        Options = new string[]{"До 50000", "От 50000 до 100000", "Больше 100000" },
+                        Options = new string[]{"До 20000", "От 20000 до 50000", "От 50000 до 100000", "Больше 100000" },
                     }
                 }
             },

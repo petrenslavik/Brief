@@ -53,7 +53,7 @@
             class="mr-4 mt-5 mb-5 form-submit-btn"
             type="submit"
           >
-            Submit
+            Отправить
           </v-btn>
           <v-spacer />
         </v-row>

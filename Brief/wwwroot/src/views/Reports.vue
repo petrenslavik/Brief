@@ -41,19 +41,19 @@ export default {
   data: () => ({
     headers: [
       {
-        text: 'Id',
+        text: 'ИД',
         value: 'id',
       },
       {
-        text: 'Name',
+        text: 'Имя',
         value: 'name',
       },
       {
-        text: 'Email',
+        text: 'Электронный адрес',
         value: 'email',
       },
       {
-        text: 'Date',
+        text: 'Дата отправки',
         value: 'date',
       },
       {

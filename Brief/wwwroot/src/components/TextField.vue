@@ -1,6 +1,6 @@
 <template>
   <div class="text-field">
-    {{ question }}
+    <span :class="{required: isMandatory && !readonly}">{{ question }}</span>
     <v-text-field
       v-if="!readonly"
       class="text-field-input"
@@ -63,20 +63,20 @@ export default {
   data() {
     return {
       rulesBuilders: {
-        required: (isMandatory) => (value) => !isMandatory || !!value || 'Required.',
-        maxLength: (length) => (value) => value === undefined
+        required: (isMandatory) => (value) => !isMandatory || !!value || 'Обязательно.',
+        maxLength: (length) => (value) => !value
           || value.length <= length
-          || `Max ${length} characters`,
-        minLength: (length) => (value) => value === undefined
+          || `Максимально ${length} символов`,
+        minLength: (length) => (value) => !value
           || value.length >= length
-          || `Min ${length} characters`,
+          || `Минимально ${length} символа`,
         email: (value) => {
           const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-          return pattern.test(value) || 'Invalid e-mail.';
+          return pattern.test(value) || 'Неверный формат электронного адреса.';
         },
         phone: (value) => {
           const pattern = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
-          return pattern.test(value) || 'Invalid phone.';
+          return pattern.test(value) || 'Неверный номер телефона.';
         },
       },
       rulesIsValid: {
@@ -112,6 +112,10 @@ export default {
         } else {
           this.rulesIsValid[propName] = false;
         }
+        this.$emit(
+          'update:isValid',
+          Object.values(this.rulesIsValid).every((val) => val),
+        );
         return result;
       };
     },
@@ -125,5 +129,11 @@ export default {
 }
 .text-field .v-input__slot {
   min-height: 42px !important;
+}
+
+span.required:after {
+    color: #e32;
+    content: ' *';
+    display:inline;
 }
 </style>

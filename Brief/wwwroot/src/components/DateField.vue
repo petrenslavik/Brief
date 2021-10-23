@@ -11,7 +11,7 @@
       min-width="290px"
     >
       <template v-slot:activator="{ on }">
-        {{ question }}
+        <span :class="{required: isMandatory}">{{ question }}</span>
         <v-text-field
           prepend-icon="event"
           readonly
@@ -56,8 +56,8 @@ export default {
       fromDateVal: '',
       fromDateMenu: false,
       rules: {
-        required: (value) => !!value || 'Required.',
-        counter: (value) => value.length <= 20 || 'Max 20 characters',
+        required: (value) => !!value || 'Обязательно.',
+        counter: (value) => value.length <= 20 || 'Максимально 20 символов',
         email: (value) => {
           const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
           return pattern.test(value) || 'Invalid e-mail.';

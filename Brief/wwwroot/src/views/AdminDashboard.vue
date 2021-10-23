@@ -10,11 +10,11 @@
           color: rgb(22, 71, 90);
         "
       >
-        Brief
+               <router-link to="/">  Brief</router-link>
       </div>
       <v-spacer />
       <div v-if="isAuthorized" class="logout-container">
-        <v-btn @click="logoutUser"> Logout </v-btn>
+        <v-btn color="#16475A" @click="logoutUser"> Выход </v-btn>
       </div>
     </v-app-bar>
 
@@ -50,5 +50,9 @@ export default {
   display: flex;
   align-items: flex-end;
   height: 100%;
+}
+
+a{
+  text-decoration: none;
 }
 </style>

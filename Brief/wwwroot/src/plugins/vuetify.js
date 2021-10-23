@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 import colors from 'vuetify/lib/util/colors';
+import ru from 'vuetify/lib/locale/ru';
 
 Vue.use(Vuetify);
 
@@ -18,5 +19,9 @@ export default new Vuetify({
         primary: colors.blue.lighten3,
       },
     },
+  },
+  lang: {
+    locales: { ru },
+    current: 'ru',
   },
 });

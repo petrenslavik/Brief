@@ -1,6 +1,6 @@
 <template class="text-area-field">
   <div>
-    {{ question }}
+    <span :class="{required: isMandatory && !readonly}">{{ question }}</span>
     <v-textarea
       v-if="!readonly"
       class="text-area-field-input"
@@ -57,10 +57,10 @@ export default {
   data() {
     return {
       rulesBuilders: {
-        required: (isMandatory) => (value) => !isMandatory || !!value || 'Required.',
+        required: (isMandatory) => (value) => !isMandatory || !!value || 'Обязательно.',
         maxLength: (length) => (value) => value === undefined
           || value.length <= length
-          || `Max ${length} characters`,
+          || `Максимально ${length} символов`,
       },
       rulesIsValid: {
         isMandatory: true,
@@ -93,6 +93,10 @@ export default {
         } else {
           this.$set(this.rulesIsValid, propName, false);
         }
+        this.$emit(
+          'update:isValid',
+          Object.values(this.rulesIsValid).every((val) => val),
+        );
         return result;
       };
     },

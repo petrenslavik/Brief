@@ -8,7 +8,7 @@
       v-model="fieldValue"
     >
       <template v-slot:label>
-        {{ question }}
+        <span :class="{required: isMandatory}">{{ question }}</span>
       </template>
       <v-radio
         v-for="option in options"
