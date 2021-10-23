@@ -68,7 +68,7 @@ export default new Vuex.Store({
     },
     async login({ commit }, data) {
       try {
-        await request.post('/admin/login', data);
+        await request.post('/admin/loginUser', data);
         commit('SET_USER');
       } catch (error) {
         console.log(error);

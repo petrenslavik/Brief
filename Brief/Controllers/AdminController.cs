@@ -17,7 +17,7 @@ namespace Brief.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(string login, string password)
+        public ActionResult LoginUser(string login, string password)
         {
             if (login == "admin" && password == "admin")
             {
