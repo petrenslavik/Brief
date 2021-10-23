@@ -96,10 +96,6 @@ export default {
   background: none;
 }
 
-body {
-  background: linear-gradient(#dca467, #c99db6);
-}
-
 header {
   height: 90px !important;
   background-color: #dca467 !important;

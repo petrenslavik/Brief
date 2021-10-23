@@ -18,7 +18,7 @@ namespace Brief.ViewModels
                     new TextField()
                     {
                         Name = "Name",
-                        Question = "Ваше имя",
+                        Question = "Имя контактного лица",
                         IsMandatory = true,
                         MinLength = 3,
                         MaxLength = 120
@@ -26,7 +26,7 @@ namespace Brief.ViewModels
                     new TextField()
                     {
                         Name = "Email",
-                        Question = "Ваша электронная почта",
+                        Question = "Электронная почта",
                         IsMandatory = true,
                         MinLength = 3,
                         MaxLength = 120
@@ -34,15 +34,31 @@ namespace Brief.ViewModels
                     new TextField()
                     {
                         Name = "PhoneNumber",
-                        Question = "Ваш номер телефона",
+                        Question = "Номер телефона",
                         IsMandatory = true,
                         MinLength = 3,
                         MaxLength = 120
                     },
                     new TextField()
                     {
+                        Name = "Messenger",
+                        Question = "Любой месенджер (Telegram, Viber)",
+                        IsMandatory = false,
+                        MinLength = 3,
+                        MaxLength = 120
+                    },
+                    new TextField()
+                    {
+                        Name = "ConvenientTime",
+                        Question = "Удобное время для связи",
+                        IsMandatory = false,
+                        MinLength = 2,
+                        MaxLength = 100
+                    },
+                    new TextField()
+                    {
                         Name = "OrganizationName",
-                        Question = "Название Вашей организации",
+                        Question = "Название организации",
                         IsMandatory = true,
                         MinLength = 3,
                         MaxLength = 120
@@ -52,6 +68,12 @@ namespace Brief.ViewModels
                         Name = "OrganizationDescription",
                         Question = "Чем занимается Ваша организация?",
                         IsMandatory = true
+                    },
+                    new TextAreaField()
+                    {
+                        Name = "Features",
+                        Question = "Какие особенности Вашего товара/услуг?",
+                        IsMandatory = false
                     }
                 },
             },
@@ -80,6 +102,18 @@ namespace Brief.ViewModels
                         Name = "Analog",
                         Question = "Приведите несколько примеров аналогичного программного обеспечения",
                         IsMandatory = true
+                    },
+                     new TextAreaField()
+                    {
+                        Name = "Structure",
+                        Question = "Напишите предварительную структуру сайта: основные разделы, подразделы. Кратко опишите их функциональное назначение и дайте характеристику содержания каждого из разделов.",
+                        IsMandatory = true
+                    },
+                    new TextAreaField()
+                    {
+                        Name = "Customers",
+                        Question = "Кто будут вашими основными клиентами? (Пол, возраст, доход, стиль жизни и т.д.)",
+                        IsMandatory = false
                     },
                     new RadioField()
                     {
@@ -133,8 +167,21 @@ namespace Brief.ViewModels
                         Name = "ApproximateBudget",
                         Question = "Укажите приблизительный бюджет для разработки данного программного обеспечения (от $ - до $)",
                         IsMandatory = true,
-                        Options = new string[]{"До 50000", "От 50000 до 100000" },
+                        Options = new string[]{"До 50000", "От 50000 до 100000", "Больше 100000" },
                     }
+                }
+            },
+            new Section()
+            {
+                Name = "Дополнительная информация",
+                Fields = new BaseField[]
+                {
+                   new TextAreaField()
+                    {
+                        Name = "AdditionalInformation",
+                        Question = "Здесь вы можете оставить любую полезную информацию для проекта. Или задать свои вопросы.",
+                        IsMandatory = false
+                    },
                 }
             }
         };

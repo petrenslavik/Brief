@@ -3,7 +3,7 @@
     <v-app-bar app dark>
       <div
         class="d-flex align-center"
-        style="font-style: italic; font-size: 44px; margin-top: 25px"
+        style="font-style: italic; font-size: 44px; margin-top: 25px; color: rgb(22, 71, 90);"
       >
         Brief
       </div>
@@ -20,3 +20,8 @@ export default {
   name: 'AdminDashboard',
 };
 </script>
+<style>
+    .main {
+        background: aliceblue;
+    }
+</style>

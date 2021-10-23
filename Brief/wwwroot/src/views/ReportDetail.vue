@@ -43,13 +43,9 @@ export default {
   background: none;
 }
 
-body {
-  background: linear-gradient(#dca467, #c99db6);
-}
-
 header {
-  height: 90px !important;
-  background-color: #dca467 !important;
+    height: 90px !important;
+    background-color: #ffffff !important;
 }
 
 @keyframes gradient {
@@ -65,7 +61,7 @@ header {
 }
 
 .step-progress__step-label {
-  color: #aed6f1;
+   color: #aed6f1;
 }
 
 .step-progress__step::after {

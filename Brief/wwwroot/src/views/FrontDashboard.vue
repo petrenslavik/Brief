@@ -4,7 +4,7 @@
       app
       dark
     >
-      <div class="d-flex align-center" style="font-style: italic; font-size: 44px; margin-top: 25px;">
+      <div class="d-flex align-center" style="font-style: italic; font-size: 44px; margin-top: 25px; color: rgb(22, 71, 90); ">
         Brief
       </div>
 
@@ -68,13 +68,9 @@ export default {
   background: none;
 }
 
-body {
-  background: linear-gradient(#dca467, #c99db6);
-}
-
-header{
-  height: 90px !important;
-  background-color: #dca467 !important;
+header {
+    height: 90px !important;
+    background-color: #ffffff !important;
 }
 
 @keyframes gradient {
